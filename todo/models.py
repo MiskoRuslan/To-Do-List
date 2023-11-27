@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 
 class Tag(models.Model):
     name = models.CharField(max_length=255)
@@ -20,3 +20,8 @@ class Task(models.Model):
 
     class Meta:
         ordering = ['-is_done', 'created_at']
+
+    def save(self, *args, **kwargs):
+        if self.deadline:
+            self.deadline = timezone.make_aware(self.deadline)
+        super().save(*args, **kwargs)
