@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>/</th>
+        <th>Content</th>
+        <th>Created At</th>
+        <th>Deadline</th>
+        <th>Tags</th>
+        <th>Update / Delete</th>
+        <th>Overdue</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in task_list %}
+        <tr>
+          <td>
+
+            {% if task.is_done %}
+              <form action="{% url 'todo:task-done' task.pk %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success btn-sm">Not Ready</button>
+              </form>
+            {% else %}
+              <form action="{% url 'todo:task-done' task.pk %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary btn-sm" style="width: 80px">Ready</button>
+              </form>
+            {% endif %}
+
+          </td>
+          <td class="font-weight-bold text-dark" style="background-color: rgba(255,255,255,0.5); max-width: 200px; overflow: hidden; text-overflow: ellipsis;">{{ task.content }}</td>
+          <td>{{ task.created_at }}</td>
+          <td>{{ task.deadline }}</td>
+          <td>
+            {% for tag in task.tags.all %}
+              <span class="badge badge-info">{{ tag.name }}</span>
+            {% endfor %}
+          </td>
+          <td>
+            <a class="btn btn-warning btn-sm" href="{% url 'todo:task-update' task.pk %}">Update</a>
+            <a class="btn btn-danger btn-sm" href="{% url 'todo:task-delete' task.pk %}">Delete</a>
+          </td>
+          {% if current_date.date > task.deadline.date and not task.is_done %}
+          	<td>❗Deadline❗</td>
+          {% elif current_date.date < task.deadline.date and not task.is_done %}
+            <td>⚙️In process..⚙️</td>
+          {% else %}
+            <td>✅Done✅</td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

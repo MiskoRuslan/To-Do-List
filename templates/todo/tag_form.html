@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="white-background-div">
+
+    <div class="container mt-4">
+      <form action="" method="post" class="col-md-6 mx-auto">
+        <h1 class="text-center">{{ object|yesno:"Update,Create" }} Tag</h1>
+        {% csrf_token %}
+        {{ form }}
+        <div class="text-center mt-3">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <a href="{% url 'todo:tag-list' %}" class="btn btn-secondary ml-2">Cancel</a>
+        </div>
+      </form>
+    </div>
+
+  </div>
+{% endblock %}

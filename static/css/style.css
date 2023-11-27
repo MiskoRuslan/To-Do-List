@@ -1,0 +1,37 @@
+body {
+    background: linear-gradient(to right, rgba(150, 182, 175, 0.41), rgba(184, 207, 225, 0.53));
+}
+
+.welcome-text {
+    font-size: 4em;
+    color: rgba(0, 0, 0, 0.58);
+    text-align: center;
+}
+
+.container {
+    text-align: center;
+    margin-top: 200px;
+}
+
+.task-div {
+    margin-left: auto;
+    margin-right: auto;
+    width: 30em;
+    background-color: rgba(0, 0, 0, 0.22);
+}
+
+.tdl {
+    text-decoration: none;
+    color: inherit;
+}
+
+.tdl:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.white-background-div {
+    background-color: rgba(255, 255, 255, 0.58);
+    border-radius: 40px;
+    padding: 20px;
+}
