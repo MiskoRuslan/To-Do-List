@@ -18,7 +18,7 @@ class TaskListView(generic.ListView):
     template_name = "todo/task_list.html"
 
     def get_queryset(self):
-        return Task.objects.all().order_by('is_done', 'created_at')
+        return Task.objects.all().order_by('is_done', '-created_at')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
