@@ -1,2 +1,36 @@
-.idea
-venv
+**__pycache__
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local development settings
+.env
+
+# Database files
+db.sqlite3
+
+
+# Media files
+/media/
+
+# Virtual environment
+venv/
+myenv/
+
+# Log files
+*.log
+
+# IDE specific files
+.idea/
+.vscode/
+
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
